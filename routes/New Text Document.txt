@@ -1,0 +1,114 @@
+
+
+    public function destroy($id)
+    {
+        // check if the id exists, delete if it does
+        $User = User::findOrFail($id);
+        $User->delete();
+
+        return redirect('/user')->with('success', 'Deleted successfully!'); 
+    }
+
+
+    public function userUpdate(Request $request){
+        
+        // perform form validation here
+        $request->validate([
+            'status' => 'required|string'
+        ]);
+        try {
+             // update order status here
+            $User = User::where('id',$request->id)->update([
+                'status' => $request->status
+            ]);
+
+            return redirect('/user')->with('success','Update Successful');
+        } catch (\Exception $e) {
+            return redirect('/user/{id}')->with('fail',$e->getMessage());
+        }
+    }
+
+
+
+
+
+
+
+
+    public function index(): View
+    {
+        $User = User::all();
+        return view('user.index', [
+            'user' => $user
+        ]);
+    }
+
+
+
+    public function show($id): View
+    {
+        $user = User::findOrFail($id);
+        return view('user.show', [
+            'user' => $user
+        ]);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ // perform validation
+
+          $request->validate([
+            'firstname' => 'required|string',
+            'lastname' => 'required|string',
+            'email' => 'required|string',
+            'password' => 'required|confirmed|min:4|max:8',
+            'instrument' => 'required|string',
+            'interest'=> 'string'
+            
+        ]);
+
+        try {
+             // register User
+
+             $user = new Authenticatable();
+             $user->firstname = $request->get('firstname');
+             $user->lastname = $request->get('lastname');
+             $user->email = $request->get('email');
+             $user->password = $request->get('password');
+             $user->instrument = $request->get('instrument');
+             $user->interest = $request->get('interest');
+     
+             $user->save();
+
+             return redirect('/')->with('success', 'Registration Successful'); 
+
+        } catch (\Exception $e) {
+            return redirect('/user/create')->with('fail',$e->getMessage());
+        }
