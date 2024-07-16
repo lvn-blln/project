@@ -107,14 +107,9 @@ class UserController extends Controller
     }
 
 
-    public function dashboard($email): View
+    public function dashboard(): View
     {
-        // User Dashboard
-
-        $user = User::findOrFail($email);
-        return view('user.dahsboard', [
-            'user' => $user
-        ]);
+        return view('user.dashboard');
     }
 
     
