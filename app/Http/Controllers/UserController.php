@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\User;
-use App\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth;
+
+// use Illuminate\Support\Facades\Hash;
 
 
 class UserController extends Controller
@@ -13,6 +15,40 @@ class UserController extends Controller
     public function create(): View
     {
         return view('user.create');
+    }
+
+
+    public function login(): View
+    {
+        return view('user.login');
+    }
+
+
+    public function authLogin(Request $request){
+       
+        // Authenticate User
+        try {
+
+            // get email and password
+
+            $email = $request->get('email');
+            $password = $request->get('password');
+
+             //Redirect after success
+            if(Auth::attempt(['email'=> $email,'password'=> $password])) {
+                return 'logged in';
+                // return redirect('/user/dashboard');
+
+            } else {
+                return 'invalid login';
+            }
+
+        }
+
+        catch (\Exception $e) {
+            // return redirect('/user')->with('fail',$e->getMessage());
+        }
+        
     }
 
 
@@ -70,6 +106,17 @@ class UserController extends Controller
         ]);
     }
 
+
+    public function dashboard($email): View
+    {
+        // User Dashboard
+
+        $user = User::findOrFail($email);
+        return view('user.dahsboard', [
+            'user' => $user
+        ]);
+    }
+
     
     
     public function update($id): View
@@ -87,7 +134,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         // check if the id exists, delete if it does
-        try{
+        try {
             $user = User::findOrFail($id);
             $user->delete();
 
@@ -106,25 +153,22 @@ class UserController extends Controller
     public function userUpdate(Request $request){
        
              // update order status here
+        try {
             $user = User::where('id',$request->id)->update([
                 'lastname' => $request->lastname
             ]);
 
-            return redirect('/user')->with('success','Update Successful');
+            return redirect('/user')->with('success','Update Successful!');
+        }
+
+        catch (\Exception $e) {
+            // return redirect('/user')->with('fail',$e->getMessage());
+        }
         
     }
 
 
- //login pot
-    //get email
-    // $email = $request->get('email');
-    // $password = $request->get('password');
-    //Authenticate
-    // if(Auth::attempt(['email'=> $email,'password'=> $password])) {
-    //     return 'logged in'
-    // } else {
-    //     return 'invalid login'
-    // }
 
+    
 
 }

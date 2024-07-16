@@ -13,6 +13,7 @@
         <!-- <p class="mssg">{{ session('mssg') }}</p>
         <p class="mssg">{{ session('success') }}</p> -->
         <button type="button"><a href="/user/create">Register</a></button>
+        <button type="button" style="background-color: #212120"><a href="/user/login">Login</a></button>
         <button type="button" style="background-color: #f58824"><a href="/user">Show Users</a></button>
             
         </div>
