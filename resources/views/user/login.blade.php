@@ -9,7 +9,10 @@
             }
         </style>
 
-        
+            @if (Session::has('fail'))
+                <p>{{Session::get('fail')}}</p> <br/>
+            @endif
+            
         <form action="/user/login" method="POST">
             @csrf
             <label for="email">Email:</label>

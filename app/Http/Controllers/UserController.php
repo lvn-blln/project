@@ -36,17 +36,18 @@ class UserController extends Controller
 
              //Redirect after success
             if(Auth::attempt(['email'=> $email,'password'=> $password])) {
-                return 'logged in';
-                // return redirect('/user/dashboard');
+                // return 'logged in';
+                return redirect('/user/dashboard');
 
             } else {
-                return 'invalid login';
+                // return 'invalid login';
+                return redirect('/user/login')->with('fail','Invalid Login');
             }
 
         }
 
         catch (\Exception $e) {
-            // return redirect('/user')->with('fail',$e->getMessage());
+            return redirect('/user/login')->with('fail',$e->getMessage());
         }
         
     }

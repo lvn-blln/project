@@ -21,14 +21,7 @@
             <li>{{ $interest }}</li>
             @endforeach
         </ul>
-        <button type="button"><a href="/user/update/{{ $user->id }}">Update</a></button>
-
-        <form action="/user/{{ $user->id }}" method="POST">
-            @method('DELETE')
-            @csrf
-            <button type="submit" style="background-color: #f58824">Delete User</button>
-
-        </form>
+        <button type="button"><a href="{{ route('update', $user->id) }}">Update</a></button>
 
         <!-- <form action="{{ route('userUpdate', $user->id) }}" method="POST">
             @csrf
@@ -39,9 +32,18 @@
                 @enderror
 
                 <button type="submit">Update Profile</button>
-        </form> 
+        </form>  -->
+
+        <form action="/user/{{ $user->id }}" method="POST">
+            @method('DELETE')
+            @csrf
+            <button type="submit" style="background-color: #f58824">Delete User</button>
+
+        </form>
+
         
-        link update profile,, confirm delete-->
+        
+        <!-- link update profile,, confirm delete -->
 
 
             
