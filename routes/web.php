@@ -16,13 +16,6 @@ Route::get('/user/dashboard', [AuthController::class, 'dashboard'])->name('dashb
 
 
 
-
-
-
-Route::get('/user/create', [UserController::class, 'create']);
-Route::get('/user/login', [UserController::class, 'login']);
-Route::post('/user', [UserController::class, 'store']);
-
 Route::get('/user', [UserController::class, 'index']);
 // Route::post('', [UserController::class, 'logout'])->name('logout');
 

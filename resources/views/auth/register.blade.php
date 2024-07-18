@@ -30,35 +30,57 @@
                                 <div class="mb-3 row">
                                     <label for="firstname" class="col-form-label">Firstname</label> <br>
                                     <div class="col-sm-12">
-                                        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="your firstname">
+                                        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="your firstname" required>
+                                        @error('firstname')
+                                            <span class="invalid-feedback" role="alert">{{$message}}</span>
+                                        @enderror
                                     </div>
                                 </div>
 
                                 <div class="mb-3 row">
                                     <label for="lastname" class="col-form-label">Lastname</label> <br>
                                     <div class="col-sm-12">
-                                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="your lastname">
+                                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="your lastname" required>
+                                        @error('lastname')
+                                            <span class="invalid-feedback" role="alert">{{$message}}</span>
+                                        @enderror
                                     </div>
                                 </div>
 
                                 <div class="mb-3 row">
                                     <label for="staticEmail" class="col-form-label">Email</label> <br>
                                     <div class="col-sm-12">
-                                        <input type="text" class="form-control" id="staticEmail" name="email" placeholder="email@example.com">
+                                        <input type="text" class="form-control" id="staticEmail" name="email" placeholder="email@example.com" required>
+                                        @error('email')
+                                            <span class="invalid-feedback" role="alert">{{$message}}</span>
+                                        @enderror
                                     </div>
                                 </div>
 
                                 <div class="mb-3 row">
                                     <label for="inputPassword" class="col-form-label">Password</label> <br>
                                     <div class="col-sm-12">
-                                    <input type="password" class="form-control" name="password" id="inputPassword">
-                                    </div>
+                                        <input type="password" class="form-control" name="password" id="inputPassword" required>
+                                        @error('password')
+                                            <span class="invalid-feedback" role="alert">{{$message}}</span>
+                                        @enderror</div>
+
+                                </div>
+
+                                <div class="mb-3 row">
+                                    <label for="confirm_password" class="col-form-label">Confirm Password</label> <br>
+                                    <div class="col-sm-12">
+                                        <input type="password" class="form-control" name="confirm_password" id="confirm_password" required>
+                                        @error('confirm_password')
+                                            <span class="invalid-feedback" role="alert">{{$message}}</span>
+                                        @enderror</div>
+
                                 </div>
 
                                 <div class="mb-3 row">
                                 <label for="instrument" class="col-form-label">Instrument</label> <br>
                                     <div class="col-sm-12">
-                                        <select class="form-select" name="instrument" aria-label="Default select example">
+                                        <select class="form-select" name="instrument" aria-label="Default select example" required>
                                             <option value="">-- choose instrument --</option>
                                             <option value="piano">Piano</option>
                                             <option value="violin">Violin</option>
@@ -66,6 +88,9 @@
                                             <option value="jazz_set">Jazz set</option>
                                             <option value="accordion">Accordion</option>
                                         </select>
+                                        @error('instrument')
+                                            <span class="invalid-feedback" role="alert">{{$message}}</span>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -73,7 +98,7 @@
                                     <label for="instrument" class="col-form-label">Interests</label> <br>
                                     <div class="col-sm-12">
                                         <div class="form-check">
-                                            <input class="form-check-input" name="interest[]" type="checkbox" value="percussions" id="" >
+                                            <input class="form-check-input" name="interest[]" type="checkbox" value="percussions" id="" required>
                                             <label class="form-check-label" for="flexCheckChecked">
                                             Percussions
                                             </label>
@@ -93,7 +118,9 @@
                                             Strings
                                             </label>
                                         </div>
-
+                                        @error('interest')
+                                            <span class="invalid-feedback" role="alert">{{$message}}</span>
+                                        @enderror
                                     </div>
 
                                 </div>
