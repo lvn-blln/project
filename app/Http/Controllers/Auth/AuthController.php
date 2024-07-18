@@ -22,8 +22,8 @@ class AuthController extends Controller
             //validate  
             $request->validate([
                 'email' => ['required', 'string', 'unique:users,email'],
-                'password' => ['min:6', 'required_with:confirm_password', 'same:confirm_password'],
-                'confirm_password' => ['min:6']
+                'password' => ['required', 'string', 'min:6'],
+                'confirm_password' => ['min:6', 'required_with:password', 'same:password']
             ]);
             $payload = $request->only('firstname', 'lastname', 'email', 'password', 'instrument', 'interest');
             User::create($payload);
