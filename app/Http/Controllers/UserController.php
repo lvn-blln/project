@@ -36,12 +36,11 @@ class UserController extends Controller
 
              //Redirect after success
             if(Auth::attempt(['email'=> $email,'password'=> $password])) {
-                // return 'logged in';
-                return redirect('/user/dashboard');
+                //return 'logged in';
+                return redirect()->route('dashboard');
 
             } else {
-                // return 'invalid login';
-                return redirect('/user/login')->with('fail','Invalid Login');
+                return back()->with('error','Invalid credentials');
             }
 
         }
@@ -50,6 +49,22 @@ class UserController extends Controller
             return redirect('/user/login')->with('fail',$e->getMessage());
         }
         
+    }
+
+
+    // public function logout(Request $request){
+    //     Auth::guard('web')->logout();
+    //     $request->session()->invalidate();
+    //     $request->session()->regenerateToken();
+    //     return to_route('user.login');
+    // }
+
+
+
+    public function dashboard(): View
+    {
+        $user = auth()->user();
+        return view('user.dashboard')->with(compact('user'));
     }
 
 
@@ -108,12 +123,7 @@ class UserController extends Controller
     }
 
 
-    public function dashboard(): View
-    {
-        return view('user.dashboard');
-    }
-
-    
+       
     
     public function update($id): View
     {

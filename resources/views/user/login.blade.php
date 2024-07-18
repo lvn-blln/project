@@ -9,8 +9,8 @@
             }
         </style>
 
-            @if (Session::has('fail'))
-                <p>{{Session::get('fail')}}</p> <br/>
+            @if (Session::has('error'))
+                <span style="background: #ff0000; color: #ffffff">{{Session::get('error')}}</span> <br/>
             @endif
             
         <form action="/user/login" method="POST">

@@ -46,7 +46,7 @@
                                             href="{{ route('register') }}"
                                             class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
                                         >
-                                            Register
+                                            
                                         </a>
                                     @endif
                                 @endauth
@@ -55,9 +55,10 @@
                     </header>
 
                     <main class="mt-6">
-                        <div class="grid gap-6 lg:grid-cols-2 lg:gap-8">
-                            
-                            
+                        <div class="grid gap-6 lg:grid-cols-2 text-center lg:gap-8">
+                            <p> Welcome {{ $user->firstname }} </p>
+                            <p> Your email is {{ $user->email }} </p>
+                       
                         </div>
                     </main>
 
