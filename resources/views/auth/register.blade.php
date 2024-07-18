@@ -80,7 +80,7 @@
                                 <div class="mb-3 row">
                                 <label for="instrument" class="col-form-label">Instrument</label> <br>
                                     <div class="col-sm-12">
-                                        <select class="form-select" name="instrument" aria-label="Default select example" required>
+                                        <select class="form-select" name="instrument" aria-label="Default select example">
                                             <option value="">-- choose instrument --</option>
                                             <option value="piano">Piano</option>
                                             <option value="violin">Violin</option>
