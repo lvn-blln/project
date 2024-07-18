@@ -13,7 +13,7 @@
                 <span style="background: #ff0000; color: #ffffff">{{Session::get('error')}}</span> <br/>
             @endif
             
-        <form action="/user/login" method="POST">
+        <form action="" method="POST">
             @csrf
             <label for="email">Email:</label>
                 <input type="email" name="email"  id="email" required>
