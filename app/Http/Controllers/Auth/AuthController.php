@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -21,10 +19,13 @@ class AuthController extends Controller
         try {    
             //validate  
             $request->validate([
+                'firstname' => ['required', 'string'],
+                'lastname' => ['required', 'string'],
                 'email' => ['required', 'string', 'unique:users,email'],
                 'password' => ['required', 'string', 'min:6'],
                 'confirm_password' => ['min:6', 'required_with:password', 'same:password'],
-                'instrument'=>'accepted'
+                'instrument'=>['required', 'string'],
+                'interest' => 'required_without_all'
             ]);
             $payload = $request->only('firstname', 'lastname', 'email', 'password', 'instrument', 'interest');
             User::create($payload);
@@ -63,13 +64,4 @@ class AuthController extends Controller
         }
         
     }
-
-    // authenticated user 
-    public function dashboard(): View
-    {
-        $user = auth()->user();
-        return view('user.dashboard')->with(compact('user'));
-    }
-
-
 }

@@ -2,26 +2,20 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Account\UserController;
 
-Route::get('/', function () {
-    return view('welcome');
+//Auth Routes
+Route::group(['prefix'=> 'auth', 'middleware'=> ['guest']], function () {
+    Route::get('register', [AuthController::class, 'register'])->name('register');
+    Route::post('register', [AuthController::class, 'registerPost'])->name('registerPost');
+    Route::get('login', [AuthController::class, 'login'])->name('login');
+    Route::post('login', [AuthController::class, 'loginAuth'])->name('loginAuth');
 });
 
-Route::get('auth/register', [AuthController::class, 'register'])->name('register');
-Route::post('auth/register', [AuthController::class, 'registerPost'])->name('registerPost');
-Route::get('auth/login', [AuthController::class, 'login'])->name('login');
-Route::post('auth/login', [AuthController::class, 'loginAuth'])->name('loginAuth');
-Route::get('/user/dashboard', [AuthController::class, 'dashboard'])->name('dashboard')->middleware('auth');
+//User's dashboard
+Route::group(['prefix'=> 'account', 'middleware'=> ['auth']], function () {
+    Route::post('logout', [UserController::class, 'logout'])->name('logout');
+    Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+});
 
-
-
-
-Route::get('/user', [UserController::class, 'index']);
-// Route::post('', [UserController::class, 'logout'])->name('logout');
-
-
-// Route::get('/user/{id}', [UserController::class, 'show']);
-// Route::get('/user/update/{id}', [UserController::class, 'update'])->name('update');
-// Route::delete('/user/{id}', [UserController::class, 'destroy']);
-// Route::post('/user/{id}', [UserController::class, 'userUpdate'])->name('userUpdate');
 

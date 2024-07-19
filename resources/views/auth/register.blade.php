@@ -98,7 +98,7 @@
                                     <label for="instrument" class="col-form-label">Interests</label> <br>
                                     <div class="col-sm-12">
                                         <div class="form-check">
-                                            <input class="form-check-input" name="interest[]" type="checkbox" value="percussions" id="" required>
+                                            <input class="form-check-input" name="interest[]" type="checkbox" value="percussions" id="" >
                                             <label class="form-check-label" for="flexCheckChecked">
                                             Percussions
                                             </label>
@@ -118,6 +118,15 @@
                                             Strings
                                             </label>
                                         </div>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="resume" type="file" id="" >
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                            Resume Upload
+                                            </label>
+                                        </div>
+
+                                        
                                         @error('interest')
                                             <span class="invalid-feedback" role="alert">{{$message}}</span>
                                         @enderror
