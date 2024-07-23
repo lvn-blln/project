@@ -16,9 +16,13 @@
                             @csrf
                             <div class="col">
                                 
-                                @if (Session::has('success'))
-                                    <div class="alert alert-success" role="alert" >
-                                        <p>{{Session::get('success')}}</p>
+                                @if(Session::has('success'))
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="alert alert-success">
+                                                {{ Session::get('success') }}
+                                            </div>
+                                        </div>
                                     </div>
                                 @endif
 

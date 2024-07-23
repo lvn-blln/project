@@ -16,14 +16,22 @@
                             @csrf
                             <div class="col">
 
-                                @if (Session::has('success'))
-                                    <div class="alert alert-success" role="alert" >
-                                        <p>{{Session::get('success')}}</p>
+                                    @if(Session::has('success'))
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="alert alert-success">
+                                                {{ Session::get('success') }}
+                                            </div>
+                                        </div>
                                     </div>
                                 @endif
-                                @if (Session::has('error'))
-                                    <div class="alert alert-danger" role="alert" aria-live="assertive" aria-atomic="true">
-                                        <p>{{Session::get('error')}}</p>
+                                @if(Session::has('error'))
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="alert alert-danger">
+                                                {{ Session::get('error') }}
+                                            </div>
+                                        </div>
                                     </div>
                                 @endif
 

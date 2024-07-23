@@ -5,19 +5,29 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-body justify-content-end">
+                    <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
                                 <h3>My Profile</h3>
-                                <p>Name: {{ auth()->user()->firstname }}</p>
+                                <p>Name: {{ auth()->user()->firstname ." ". auth()->user()->lastname }}</p>
                             </div>
                         
-                            <div class="col-md-6">
+                            <div class="col-md-6 text-end">
                                 <a class="navbar-brand" href="#">
-                                <img src="{{url('storage/'.auth()->user()->resume)}}" alt="profile" height="50">
+                                <img src="{{url('storage/'.auth()->user()->resume)}}" alt="profile" height="70">
                                 </a>
                             </div>
                         </div>
+
+                        @if(auth()->user()->is_verified == 0)
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="alert alert-danger">
+                                        <a href="{{ route('verify-user-form') }}">Please click here to verify your email.</a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div> 
             </div>

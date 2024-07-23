@@ -16,6 +16,14 @@ Route::group(['prefix'=> 'auth', 'middleware'=> ['guest']], function () {
 Route::group(['prefix'=> 'account', 'middleware'=> ['auth']], function () {
     Route::post('logout', [UserController::class, 'logout'])->name('logout');
     Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+
+    //Verification
+    Route::group(['prefix'=> 'verify/user'], function () {
+        Route::get('form', [UserController::class, 'verifyUserForm'])->name('verify-user-form');
+        Route::post('post', [UserController::class, 'verifyUserPost'])->name('verify-user-post');
+
+        Route::post('resend-code', [UserController::class, 'ResendEmailCode'])->name('resend-email-code');
+    });
 });
 
 

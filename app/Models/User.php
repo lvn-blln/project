@@ -25,6 +25,8 @@ class User extends Authenticatable
             'instrument',
             'interest',
             'resume',
+            'otp',
+            'is_verified'
     ];
 
     /**
