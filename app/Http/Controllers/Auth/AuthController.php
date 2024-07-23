@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -25,12 +26,15 @@ class AuthController extends Controller
                 'password' => ['required', 'string', 'min:6'],
                 'confirm_password' => ['min:6', 'required_with:password', 'same:password'],
                 'instrument'=>['required', 'string'],
-                'interest' => 'required_without_all'
+                'interest' => ['required_without_all'],
+                'resume' => ['required', 'image', 'mimes:png', 'max:2048']
             ]);
-            $payload = $request->only('firstname', 'lastname', 'email', 'password', 'instrument', 'interest');
+            $payload = $request->only('firstname', 'lastname', 'email', 'password', 'instrument', 'interest', 'resume');
+            $payload['resume'] = $request->file('resume')->store('img');
             User::create($payload);
-            
-            return redirect()->route('login');
+
+
+            return redirect()->route('login')->with('success','Registration Successful!');
             //return back()->with('success', 'Registration Successful!'); 
         } catch (\Exception $e) {
            return back()->with('error',$e->getMessage());

@@ -12,7 +12,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h3>Please register here</h3>
-                        <form action="{{ route('registerPost') }}" method="POST">
+                        <form action="{{ route('registerPost') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="col">
 
@@ -118,20 +118,17 @@
                                             Strings
                                             </label>
                                         </div>
-
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="resume" type="file" id="" >
-                                            <label class="form-check-label" for="flexCheckChecked">
-                                            Resume Upload
-                                            </label>
-                                        </div>
-
                                         
                                         @error('interest')
                                             <span class="invalid-feedback" role="alert">{{$message}}</span>
                                         @enderror
                                     </div>
 
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="formFileSm" class="form-label">Resume</label>
+                                    <input class="form-control form-control-sm" name="resume" id="formFileSm" type="file" required>
                                 </div>
 
                                 <button class="btn btn-primary float-right">Register</button>
