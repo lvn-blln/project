@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Jobs\SendEmailQueue;
 
 class AuthController extends Controller
 {
@@ -41,9 +42,19 @@ class AuthController extends Controller
 
             $otp = random_int($min, $max);
             $payload['otp'] = $otp;
-            $payload['is_verified'] = 0;
 
-            User::create($payload);
+            $user = User::create($payload);
+            
+            $data = [
+                'subject'=> 'Email Verification',
+                'view'=> 'emails.email-verification',
+                'email'=> $user->email,
+                'otp'=> $user->otp,
+                'firstname'=> $user->firstname
+            ];
+
+            //Queue
+            dispatch(new SendEmailQueue($data));
 
             return redirect()->route('login')->with('success','Registration Successful!');
         } catch (\Exception $e) {

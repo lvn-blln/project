@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Account;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\SendEmail;
+use App\Jobs\SendEmailQueue;
 
 class UserController extends Controller
 {
@@ -28,6 +27,7 @@ class UserController extends Controller
         return view('account.verification.form');
     }
 
+    // resend otp
     public function ResendEmailCode(Request $request){
         try{
             $user = auth()->user();
@@ -48,14 +48,31 @@ class UserController extends Controller
                 'firstname'=> $user->firstname
             ];
 
-            Mail::to($data['email'])->send(new SendEmail($data));
-
-            
-            
+            //Queue
+            dispatch(new SendEmailQueue($data));
 
             return back()->with('success','Email sent to '.$data['email']);
         } catch(Exception $e){
             return back()->with('error',$e->getMessage());
         }
+    }
+
+    // verify user
+    public function verifyUserPost(Request $request){
+        try{
+            $user = auth()->user();
+            $otp= $user->otp;
+            $formOTP=$request->otp;
+            if($formOTP==$otp){
+                $user->is_verified = 1;
+                $user->save();
+                
+                return redirect('account/dashboard')->with('success','You are verified!');
+            }
+        } catch (\Exception $e){
+            return back()->with('error',$e->getMessage());
+        }
+        
+    
     }
 }

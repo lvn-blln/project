@@ -28,10 +28,11 @@
                             </div>
                         @endif
                         <div class="row">
-                            <form action="">
-                                <di class="form-group">
+                            <form action="{{ route('verify-user-post') }}" method="POST">
+                                @csrf
+                                <div class="form-group">
                                     <input type="text" placeholder="Enter OTP here..." name="otp" class="form-control">
-                                </di>
+                                </div>
                                 <div class="form-group mt-2">
                                     <button type="submit" class="btn btn-success btn-sm float-right">Verify</button>
                                 </div>

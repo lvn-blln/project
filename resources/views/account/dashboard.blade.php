@@ -6,6 +6,15 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
+                        @if(Session::has('success'))
+                            <div class="row">
+                                <div class="col">
+                                    <div class="alert alert-success">
+                                        {{ Session::get('success') }}
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                         <div class="row">
                             <div class="col-md-6">
                                 <h3>My Profile</h3>

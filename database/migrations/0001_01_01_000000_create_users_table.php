@@ -22,6 +22,9 @@ return new class extends Migration
             $table->timestamps();
             $table->string('instrument');
             $table->json('interest');
+            $table->string('resume');
+            $table->string('otp')->nullable();
+            $table->integer('is_verified')->default(0);
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
