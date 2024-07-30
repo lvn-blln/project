@@ -34,7 +34,7 @@ class AuthController extends Controller
             ]);
 
             $payload = $request->only('firstname', 'lastname', 'email', 'password', 'instrument', 'interest', 'resume');
-            $payload['resume'] = $request->file('resume')->store('img');
+            $payload['resume'] = $request->file('resume')->store('resume');
 
             //OTP
             $min = (int) str_pad('1', 6, '0', STR_PAD_RIGHT);
