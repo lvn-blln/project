@@ -22,9 +22,13 @@
                             </div>
                         
                             <div class="col-md-6 text-end">
-                                <a class="navbar-brand" href="#">
+                                <!-- <a class="navbar-brand" href="#">
                                 <img src="{{ url('storage/'.auth()->user()->resume) }}" alt="profile" height="70">
-                                </a>
+                                </a> -->
+                               <a href="{{ url('storage/'.auth()->user()->resume) }}" >
+                                <button class="btn btn-warning text-white">View File</button>
+
+                               </a> 
                             </div>
                         </div>
 

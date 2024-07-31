@@ -21,6 +21,8 @@ class AuthController extends Controller
     {
         try {    
             
+            
+
             //validate  
             $request->validate([
                 'firstname' => ['required', 'string'],
@@ -34,7 +36,8 @@ class AuthController extends Controller
             ]);
 
             $payload = $request->only('firstname', 'lastname', 'email', 'password', 'instrument', 'interest', 'resume');
-            $payload['resume'] = $request->file('resume')->store('resume');
+            $payload['resume'] = $request->file('resume')->storeAs(
+                'resume', $request->lastname);
 
             //OTP
             $min = (int) str_pad('1', 6, '0', STR_PAD_RIGHT);
@@ -44,7 +47,7 @@ class AuthController extends Controller
             $payload['otp'] = $otp;
 
             $user = User::create($payload);
-            
+
             $data = [
                 'subject'=> 'Email Verification',
                 'view'=> 'emails.email-verification',
