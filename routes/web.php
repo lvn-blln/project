@@ -24,6 +24,10 @@ Route::group(['prefix'=> 'account', 'middleware'=> ['auth']], function () {
 
         Route::post('resend-code', [UserController::class, 'ResendEmailCode'])->name('resend-email-code');
     });
+
+    Route::get('here', function(){
+        return "I am here now";
+    })->middleware('is_verified');
 });
 
 
