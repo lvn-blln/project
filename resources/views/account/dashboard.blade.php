@@ -41,6 +41,8 @@
                                 </div>
                             </div>
                         @endif
+
+                        <livewire:counter.counter /> 
                     </div>
                 </div> 
             </div>
