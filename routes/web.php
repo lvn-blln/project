@@ -17,6 +17,8 @@ Route::group(['prefix'=> 'account', 'middleware'=> ['auth']], function () {
     Route::post('logout', [UserController::class, 'logout'])->name('logout');
     Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
 
+    Route::get('items', [UserController::class, 'items'])->name('items');
+
     //Verification
     Route::group(['prefix'=> 'verify/user'], function () {
         Route::get('form', [UserController::class, 'verifyUserForm'])->name('verify-user-form');

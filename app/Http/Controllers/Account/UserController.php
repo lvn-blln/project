@@ -75,4 +75,9 @@ class UserController extends Controller
         
     
     }
+
+    //Items
+    public function items(){
+        return view('account.list-items');
+    }
 }
