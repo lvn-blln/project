@@ -21,7 +21,7 @@
                     </div>
 
                     <div class="table mt-5">
-                        <input type="text" wire:model.debounce.300ms="search" class="form-control" style="width: 45%; border: 1px solid blue" placeholder="Search here...">
+                        <input type="text" wire:model.live.debounce.300ms="search" class="form-control" style="width: 45%; border: 1px solid blue" placeholder="Search here...">
 
                         <table class="table table-bordered mt-2">
                             <thead>
@@ -38,7 +38,7 @@
                             <tbody>
                                 @foreach($items as $item)
                                     <tr>
-                                        <td>
+                                        <td wire:key='item'>
                                             {{ $item->name }}
                                         </td>
 

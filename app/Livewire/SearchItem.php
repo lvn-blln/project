@@ -15,7 +15,7 @@ class SearchItem extends Component
     public $name = '';
     public $department;
     public $show;
-    public $search;
+    public $search= '';
 
     public function addRecord(){
         Item::create([
@@ -28,14 +28,15 @@ class SearchItem extends Component
         $this->department = '';
     }
 
+
     public function render()
     {
         $search = $this->search;
-        $items = Item::where('name', 'LIKE', '%' . $search . '%')->orderByDesc('id')->paginate(5);
-        return view('livewire.search-item')->with(compact('items'));
+        // $items = Item::where('name', 'LIKE', '%' . $search . '%')->orderByDesc('id')->paginate(5);
+        // ->with(compact('items')
+        return view('livewire.search-item', [
+            'items'=>Item::where('name', 'like', '%' . $search . '%')->orderByDesc('id')->paginate(5),
+        ]);
     }
 
-    public function updatingSearch(){
-        $this->resetPage();
-    }
 }
