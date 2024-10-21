@@ -21,7 +21,7 @@
                     </div>
 
                     <div class="table mt-5">
-                        <input type="text" Wire:Key wire:model="query" class="form-control" style="width: 45%; border: 1px solid blue" placeholder="Search here...">
+                        <input type="text" wire:model.debounce.300ms="search" class="form-control" style="width: 45%; border: 1px solid blue" placeholder="Search here...">
 
                         <table class="table table-bordered mt-2">
                             <thead>
@@ -48,11 +48,11 @@
                                     </tr>
                                 @endforeach
 
-                                {{--<tr>
+                                <tr>
                                     <td>
                                         {{ $items->links() }}
                                     </td>
-                                </tr>--}}
+                                </tr>
                             </tbody>
                         </table>
                     </div>
