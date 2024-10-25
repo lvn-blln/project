@@ -3,9 +3,10 @@
         <div class="card-body">
             <div class="row justify-content-center">
                 <div class="col-8">
+                    <a href="/account/dashboard" wire:navigate>Dashboard</a>
                     <div class="form-div">
                         <!-- Form -->
-                        <form method="POST" wire:submit="addRecord">
+                        <form method="POST" wire:submit="addRecord" wire:confirm="Are yiu sure">
                             <div class="form-group">
                                 <input type="text" class="form-control" wire:model="name" placeholder="Enter name...">
                             </div>
@@ -17,7 +18,14 @@
                             <div class="form-group mt-1">
                                 <button class="btn btn-primary float-right" wire:model="show">Add Record</button>
                             </div>
+
+                            <div wire:loading wire:target="addRecord">
+                                Loading...
+
+                            </div>
+
                         </form>
+
                     </div>
 
                     <div class="table mt-5">
@@ -56,6 +64,14 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <button wire:click="showCommentsToggle">Show comments</button>
+ 
+                    @if ($showComments)
+                        <div wire:transition> 
+                            Show this part
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
