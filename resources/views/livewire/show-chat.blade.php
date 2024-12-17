@@ -21,7 +21,6 @@
                                 </div>
                             @endif
                         @endforeach
-
                         <form method="POST" wire:submit="sendChat">
                             <div class="form-group mt-5">
                                 <input type="hidden" class="form-control" wire:model="sender_id">
