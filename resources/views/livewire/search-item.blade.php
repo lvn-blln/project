@@ -4,9 +4,11 @@
             <div class="row justify-content-center">
                 <div class="col-8">
                     <a href="/account/dashboard" wire:navigate>Dashboard</a>
+                    
+                    <a href="{{ route('users') }} " >Show users</a>
                     <div class="form-div">
                         <!-- Form -->
-                        <form method="POST" wire:submit="addRecord" wire:confirm="Are yiu sure">
+                        <form method="POST" wire:submit="addRecord">
                             <div class="form-group">
                                 <input type="text" class="form-control" wire:model="name" placeholder="Enter name...">
                             </div>
@@ -35,6 +37,7 @@
                             <thead>
                                 <tr>
                                     <th>
+                                        
                                         Name
                                     </th>
                                     <th>
@@ -46,6 +49,7 @@
                             <tbody>
                                 @foreach($items as $item)
                                     <tr>
+                                    <a href="account/item" >
                                         <td wire:key='item'>
                                             {{ $item->name }}
                                         </td>
@@ -53,7 +57,11 @@
                                         <td>
                                             {{ $item->department }}
                                         </td>
+                                        </a>
                                     </tr>
+
+                                
+                                    
                                 @endforeach
 
                                 <tr>

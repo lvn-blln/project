@@ -18,6 +18,8 @@ Route::group(['prefix'=> 'account', 'middleware'=> ['auth']], function () {
     Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
 
     Route::get('items', [UserController::class, 'items'])->name('items');
+    Route::get('chat/{id}', [UserController::class, 'showChat'])->name('chat');
+    Route::get('users', [UserController::class, 'showUser'])->name('users');
 
     //Verification
     Route::group(['prefix'=> 'verify/user'], function () {

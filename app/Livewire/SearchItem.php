@@ -33,9 +33,6 @@ class SearchItem extends Component
         $this->showComments = !$this->showComments;
     }
      
-    
-
-
     public function render()
     {
         $search = $this->search;

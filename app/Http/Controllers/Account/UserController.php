@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Jobs\SendEmailQueue;
+use App\Models\Item;
+use App\Models\User ;
+
 
 class UserController extends Controller
 {
@@ -79,5 +82,18 @@ class UserController extends Controller
     //Items
     public function items(){
         return view('account.list-items');
+    }
+
+    //Chat
+    public function showChat($id){
+
+        return view('account.get-chat', [
+            'userId'=>$id
+        ]);
+    }
+
+    //Users
+    public function showUser(){
+        return view('account.list-users');
     }
 }
